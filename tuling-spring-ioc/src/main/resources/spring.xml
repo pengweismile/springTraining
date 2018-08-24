@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <bean class="com.tuling.spring.HelloSpring">
+
+    </bean>
+    <bean class="com.tuling.spring.HelloSpring">
+        <constructor-arg name="name" type="java.lang.String" value="luban"/>
+        <constructor-arg index="1" type="java.lang.String" value="sex"/>
+    </bean>
+
+    <bean class="com.tuling.spring.HelloSpring" factory-method="build">
+        <constructor-arg name="type" type="java.lang.String" value="B"/>
+    </bean>
+    <bean class="com.tuling.spring.LubanFactoryBean" id="helloSpring123"></bean>
+
+    <bean class="com.tuling.spring.HelloSpring" scope="singleton">
+
+    </bean>
+    <bean class="com.tuling.spring.HelloSpring" init-method="init" destroy-method="destroy" lazy-init="false"></bean>
+
+
+
+
+    <!-- 依赖注入
+    <bean class="com.tuling.spring.HelloSpring">
+        <constructor-arg name="fine">
+            <bean class="com.tuling.spring.FineSpring"/>
+        </constructor-arg>
+    </bean>
+
+    <bean class="com.tuling.spring.HelloSpring">
+        <property name="fine" ref="fine"/>
+    </bean>
+
+    <bean class="com.tuling.spring.HelloSpring">
+        <property name="fine" ref="fine"/>
+    </bean>-->
+
+    <bean id="helloSpringAutowireConstructor"
+          class="com.tuling.spring.HelloSpring">
+        <constructor-arg name="fine" ref="fine"></constructor-arg>
+    </bean>
+
+    <bean id="fine" class="com.tuling.spring.FineSpring"/>
+
+</beans>
