@@ -1,60 +1,43 @@
 package com.tuling.spring;/**
- * Created by Administrator on 2018/8/22.
+ * Created by Administrator on 2018/8/26.
  */
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Tommy
- *         Created by Tommy on 2018/8/22
+ *         Created by Tommy on 2018/8/26
  **/
 public class HelloSpring {
-    private FineSpring fine;
+    private String name;
+    private int sex;
+    private Hi hi;
 
     public HelloSpring() {
-
     }
 
-    public HelloSpring(String name, String sex) {
-        System.out.println(name);
-        System.out.println(sex);
+    public HelloSpring(Hi hi) {
+        this.hi = hi;
     }
 
-    public HelloSpring(FineSpring fine) {
-        this.fine = fine;
-    }
-
-    public HelloSpring(FineSpring fine, String abc) {
-        this.fine = fine;
-    }
-
-    public void sayHello() {
-        System.out.println("hi luban ");
-    }
-
-    public void init() {
-
-    }
-
-    public void destroy() {
-
+    public HelloSpring(String name, int sex) {
+        this.name = name;
+        this.sex = sex;
     }
 
     public static HelloSpring build(String type) {
-        if (type.equals("A")) {
-            return new HelloSpring("luban", "man");
-        } else if (type.equals("B")) {
-            return new HelloSpring("diaocan", "woman");
+        if ("A".equals(type)) {
+            return new HelloSpring("luban", 1);
+        } else if ("B".equals(type)) {
+            return new HelloSpring("diaocan", 0);
         } else {
-            throw new IllegalArgumentException("type must A or B");
+            throw new IllegalArgumentException("type must 'A' or 'B'");
         }
     }
 
-    public FineSpring getFine() {
-        return fine;
+    public Hi getHi() {
+        return hi;
     }
 
-    public void setFine(FineSpring fine) {
-        this.fine = fine;
+    public void setHi(Hi hi) {
+        this.hi = hi;
     }
 }
