@@ -13,5 +13,6 @@
     </properties>
     <modules>
         <module>tuling-spring-ioc</module>
+        <module>tuling-spring-transaction</module>
     </modules>
 </project>
