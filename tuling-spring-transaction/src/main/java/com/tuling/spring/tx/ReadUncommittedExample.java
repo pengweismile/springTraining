@@ -76,12 +76,14 @@ public class ReadUncommittedExample {
     }
 
     public static void main(String[] args) {
+        // 启动插入线程
         Thread t1 = run(new Runnable() {
             @Override
             public void run() {
                 insert("1111", "luban", 10000);
             }
         });
+        // 启动查询线程
         Thread t2 = run(new Runnable() {
             @Override
             public void run() {

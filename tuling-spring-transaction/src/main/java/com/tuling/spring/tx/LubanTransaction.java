@@ -38,6 +38,9 @@ public class LubanTransaction {
                     }
                 });
         proxyUserSerivce.createUser("luban");
-
+//        开启事物:createUser
+//        开启事物: addAccount
+//        关闭事物:addAccount
+//       关闭事物:createUser
     }
 }

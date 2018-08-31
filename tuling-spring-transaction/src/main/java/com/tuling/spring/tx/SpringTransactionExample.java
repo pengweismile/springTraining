@@ -2,6 +2,7 @@ package com.tuling.spring.tx;/**
  * Created by Administrator on 2018/8/28.
  */
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -39,9 +40,10 @@ public class SpringTransactionExample {
 
     public static void main(String[] args) {
         final DataSource ds = new DriverManagerDataSource(url, user, password);
-        final TransactionTemplate template = new TransactionTemplate();
-        template.setTransactionManager(new DataSourceTransactionManager(ds));
 
+        final TransactionTemplate template = new TransactionTemplate();
+
+        template.setTransactionManager(new DataSourceTransactionManager(ds));
 
         template.execute(new TransactionCallback<Object>() {
             @Override
@@ -59,7 +61,7 @@ public class SpringTransactionExample {
                         prepare.executeUpdate();
                     }
                     // 设置保存点
-                    savePoint = status.createSavepoint();
+                   savePoint = status.createSavepoint();
                     {
                         // 插入
                         PreparedStatement prepare = conn.
@@ -74,7 +76,9 @@ public class SpringTransactionExample {
                         PreparedStatement prepare = conn.
                                 prepareStatement("UPDATE account SET money= money+1 where user=?");
                         prepare.setString(1, "asdflkjaf");
-                        Assert.isTrue(prepare.executeUpdate() > 0, "");
+
+                        int i=1/0;
+
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

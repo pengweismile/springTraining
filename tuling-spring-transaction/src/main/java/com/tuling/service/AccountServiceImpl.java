@@ -5,6 +5,7 @@ package com.tuling.service;/**
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +28,6 @@ public class AccountServiceImpl implements AccountService {
     public void addAccount(String name, int initMoney) {
         String accountid = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         jdbcTemplate.update("insert INTO account (accountName,user,money) VALUES (?,?,?)", accountid, name, initMoney);
-        // 人为报错
-        int i = 1 / 0;
     }
 
     @Override

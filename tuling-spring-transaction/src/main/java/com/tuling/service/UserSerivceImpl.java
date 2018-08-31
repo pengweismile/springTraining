@@ -5,6 +5,7 @@ package com.tuling.service;/**
 import org.springframework.aop.framework.AopContext;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -26,22 +27,19 @@ public class UserSerivceImpl implements UserSerivce {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @Override
-    @Transactional
-    public void createUser(String name) {
-        jdbcTemplate.update("INSERT INTO `user` (name) VALUES(?)", name);
-        ((UserSerivce) AopContext.currentProxy()).addAccount(name, 10000);
 
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void createUser(String name) {
+        // 插入user 记录
+        jdbcTemplate.update("INSERT INTO `user` (name) VALUES(?)", name);
+        // 调用 accountService 添加帐户
+        accountService.addAccount(name, 10000);
         // 人为报错
         int i = 1 / 0;
     }
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void addAccount(String name, int initMoney) {
-        String accountid = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        jdbcTemplate.update("insert INTO account (accountName,user,money) VALUES (?,?,?)", accountid, name, initMoney);
-    }
 
 
 

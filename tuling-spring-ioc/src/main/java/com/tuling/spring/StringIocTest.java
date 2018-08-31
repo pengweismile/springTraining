@@ -13,8 +13,9 @@ public class StringIocTest {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("spring.xml");
-        context.getBean("driver");
-        context.getBean(java.sql.Driver.class);
+        context.getBean(HelloSpring.class);
+      /*  context.getBean("driver");
+        context.getBean(java.sql.Driver.class);*/
     }
 
 }

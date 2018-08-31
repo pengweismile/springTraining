@@ -97,7 +97,7 @@ public class ReadcommittedExample {
                     Connection conn = openConnection();
                     conn.setAutoCommit(false);
                     // 将参数升级成 Connection.TRANSACTION_REPEATABLE_READ 即可解决不可重复读问题
-                    conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+//                    conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                     // 第一次读取不到
                     select("luban", conn);
                     // 释放锁
@@ -106,6 +106,7 @@ public class ReadcommittedExample {
                     }
                     // 第二次读取到(数据不一至)
                     Thread.sleep(500);
+
                     select("luban", conn);
                     conn.close();
                 } catch (ClassNotFoundException e) {
