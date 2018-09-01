@@ -15,5 +15,7 @@
         <module>tuling-spring-ioc</module>
         <module>tuling-spring-transaction</module>
         <module>tuling-spring-mvc</module>
+        <module>tuling-mvc</module>
+        <module>tuling-test-web</module>
     </modules>
 </project>
