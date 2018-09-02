@@ -70,7 +70,7 @@ public class HandlerServlet extends HttpServlet {
 //        super.doPost(req, resp);
         doHandler(req, resp);
     }
-
+    // TODO 处理静态文件
     public void doHandler(HttpServletRequest req, HttpServletResponse resp) {
         String uri = req.getServletPath();
         if (uri.equals("/favicon.ico")) {
@@ -106,6 +106,8 @@ public class HandlerServlet extends HttpServlet {
             resp.setStatus(200);
             temp.process(fview.getModels(), resp.getWriter());
         }
+        // JSTL VIEW
+        // JSON VIEW
     }
 
     private Object[] buildPrams(MvcBeanFactory.MvcBean mvcBean, HttpServletRequest req, HttpServletResponse resp) {
@@ -147,7 +149,9 @@ public class HandlerServlet extends HttpServlet {
             }
         } else if (String.class.equals(targetClass)) {
             result = val;
-        } else {
+        }
+        // TODO Serializable 进行自动封装
+        else {
             System.err.println(String.format("not suport param type %s", targetClass.getName()));
         }
         return (T) result;

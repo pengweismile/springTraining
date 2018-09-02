@@ -28,6 +28,7 @@ public class MvcBeanFactory {
 
 
     private void loadApiFromSpringBeans() {
+        apiMap.clear();
         // ioc 所有BEan
         // spring ioc 扫描
         String[] names = applicationContext.getBeanDefinitionNames();
@@ -86,7 +87,7 @@ public class MvcBeanFactory {
         Method targetMethod; // 目标方法 getUser
         ApplicationContext context;
 
-        // 多线程安全问题
+
         public Object run(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
             // 懒加载
             if (target == null) {

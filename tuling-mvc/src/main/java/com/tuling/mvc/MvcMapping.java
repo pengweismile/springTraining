@@ -12,4 +12,6 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.METHOD)
 public @interface MvcMapping {
     public String value();
+
+    public String contentType() default "JSON";
 }
